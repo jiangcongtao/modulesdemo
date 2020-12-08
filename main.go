@@ -1,16 +1,21 @@
 package main
 
 import (
-	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
+	log.SetFormatter(&log.JSONFormatter{})
+	log.SetOutput(os.Stdout)
+
 	mtx := mux.NewRouter()
 	mtx.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		log.WithField("user-agent", r.UserAgent()).Info("accessed home page")
 		_, _ = w.Write([]byte("Hello World!"))
 	})
 
