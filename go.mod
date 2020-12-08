@@ -1,4 +1,4 @@
-module github.com/jiangcongtao/modulesdemo
+module github.com/jiangcongtao/modulesdemo/v2
 
 go 1.13
 
